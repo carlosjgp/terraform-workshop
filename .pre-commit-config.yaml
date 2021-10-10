@@ -1,0 +1,19 @@
+repos:
+- repo: git://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.52.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+  hooks:
+    - id: terraform_fmt
+    - id: terraform_validate
+      require_serial: true
+    - id: terraform_providers_lock
+      require_serial: true
+    - id: terraform_docs_replace
+      require_serial: true
+    - id: terraform_tflint
+      args:
+        - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
+      require_serial: true
+    - id: terraform_tfsec
+      require_serial: true
+    - id: terrascan
+      require_serial: true

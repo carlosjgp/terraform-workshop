@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "terraform-workshop"
+version = "0.1.0"
+description = ""
+authors = ["Carlos Juan Gómez Peñalver <carlosjuangp@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+BlastRadius = "^0.1.23"
+
+[tool.poetry.dev-dependencies]
+checkov = "^2.0.479"
+pre-commit = "^2.15.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
