@@ -22,3 +22,18 @@ resource "kubernetes_namespace" "tf_provider" {
     name = "tf-provider"
   }
 }
+
+
+data "aws_region" "ireland" {}
+
+data "aws_region" "london" {
+  provider = aws.london
+}
+
+output "aws_region_ireland" {
+  value = data.aws_region.ireland.description
+}
+
+output "aws_region_london" {
+  value = data.aws_region.london.description
+}

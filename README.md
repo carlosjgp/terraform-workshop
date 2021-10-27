@@ -36,6 +36,7 @@ Folder `05_modules`
 
 ### terraform workspaces
 
+Folder `06_workspaces`
 
 ### terraform and pipelines (automation) no demo
 
@@ -54,12 +55,42 @@ Folder `05_modules`
 
 ### Pitfalls
 
-- Too much/little infrastrcure
-  Could lead into:
+#### Providers and modules versioning
+
+Make sure you are confortable with the strategy to adopt versions
+
+Be mindful of the providers and modules you are using and how their maintainers publish their verions.
+
+- New patch versions might cause changes in your infrastructure
+- No updating ofter will make it very painful to update when you really need to
+
+#### Too much/little infrastrcure
+
+Could lead into
   - Works when adding things. It doesn't on create from scratch, updating modules or destroying the whole thing.
   - [Cyclic dependencies](https://stackoverflow.com/questions/52353693/terraform-cyclic-dependency-in-apply-stage-when-using-depends-on-for-modul)
-- Resources dependencies
-  - Explicit vs implicit
+
+![Cyclic dependency](/docs/img/cyclic_deps.png)
+
+#### Resources dependencies
+
+Explicit vs implicit
+
+#### Race conditions
+
+eg: AWS IAM propagation
+
+#### Drifted state
+
+Some times some provider resources or just how we do code might change the same cloud resource on two different projects and they will constantly changing the other.
+
+### Monorepo vs repo per project
+
+Isolation vs easy to find
+
+#### Terragrunt 
+
+https://github.com/antonbabenko/terragrunt-reference-architecture
 
 ## Tools
 
@@ -80,7 +111,7 @@ Folder `05_modules`
 - [`kitchen-terraform`](https://github.com/newcontext-oss/kitchen-terraform)
 - [`Pulumi` ish](https://www.pulumi.com/)
 
-### Visualise 
+### Visualise
 
 #### Terraform graph
 
@@ -120,9 +151,7 @@ https://hieven.github.io/terraform-visual/plan-details
 
 ### Hygene
 
-- [Python Poetry](https://python-poetry.org/) to install the tools we need written in python
-  - Checkov
-  - [`pre-commit`](https://pre-commit.com/) including [Terraform hooks](https://github.com/antonbabenko/pre-commit-terraform)
+- [`pre-commit`](https://pre-commit.com/) including [Terraform hooks](https://github.com/antonbabenko/pre-commit-terraform)
 - [`terraform-docs`](https://github.com/terraform-docs/terraform-docs)
 
 # Reference
